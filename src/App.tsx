@@ -45,6 +45,7 @@ const router = createBrowserRouter([
   },
 ]);
 
+//웹브라우저에서 제공하는 기본 css를 지우는 작업
 const GlobalStyles = createGlobalStyle`
 ${reset};
 *{
