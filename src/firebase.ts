@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 //firebase의 api키 가져오기
 const firebaseConfig = {
@@ -16,3 +18,7 @@ const app = initializeApp(firebaseConfig);
 
 //auth를 사용함으로써 firebase 서비스 이용하기
 export const auth = getAuth(app);
+
+export const storage = getStorage(app);
+
+export const db = getFirestore(app);
