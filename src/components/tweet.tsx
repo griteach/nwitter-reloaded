@@ -68,9 +68,7 @@ export default function Tweet({ userName, photo, tweet, userId, id }: ITweet) {
     if (!ok || user?.uid !== userId) return;
     try {
       await updateDoc();
-      //0. 사용자의 ID와 트윗 작성자의 ID가 같지 않으면 edit 버튼이 보이지 않는다.
-      //0-1. 같다면 edit버튼이 보인다.
-      //1. edit버튼이 클릭됐을 때, 사용자의 ID와 트윗 작성자의 ID가 같지 않으면 return
+
       //2. 같다면 트윗 레퍼런스 참조를 가져온다.
       //3. updateDoc에 레퍼런스 참조를 넣고, 변경하고자 하는 필드:밸류도 넣는다.
       //4. 컨펌을 통해 수정작업을 확정한다.
