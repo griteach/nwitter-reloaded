@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ITweet } from "./timeline";
 import { auth, db, storage } from "../firebase";
-import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 
 const Wrapper = styled.div`
@@ -35,15 +35,6 @@ const DeleteBtn = styled.button`
     color: tomato;
   }
 `;
-const UpdateBtn = styled.button`
-  cursor: pointer;
-  background-color: transparent;
-  border: 0;
-  svg {
-    width: 20px;
-    color: tomato;
-  }
-`;
 
 export default function Tweet({ userName, photo, tweet, userId, id }: ITweet) {
   const user = auth.currentUser;
@@ -60,21 +51,7 @@ export default function Tweet({ userName, photo, tweet, userId, id }: ITweet) {
     } catch (error) {
       console.log(error);
     } finally {
-    }
-  };
-  const onUpdate = async () => {
-    const ok = confirm("Are you sure you want to update this tweet?");
-
-    if (!ok || user?.uid !== userId) return;
-    try {
-      await updateDoc();
-
-      //2. 같다면 트윗 레퍼런스 참조를 가져온다.
-      //3. updateDoc에 레퍼런스 참조를 넣고, 변경하고자 하는 필드:밸류도 넣는다.
-      //4. 컨펌을 통해 수정작업을 확정한다.
-    } catch (error) {
-      console.log(error);
-    } finally {
+      console.log("");
     }
   };
 
@@ -101,22 +78,6 @@ export default function Tweet({ userName, photo, tweet, userId, id }: ITweet) {
                 />
               </svg>
             </DeleteBtn>
-            <UpdateBtn onClick={onUpdate}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
-                />
-              </svg>
-            </UpdateBtn>
           </>
         ) : null}
       </Column>
